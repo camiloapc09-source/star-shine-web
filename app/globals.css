@@ -1,0 +1,87 @@
+@import "tailwindcss";
+
+/* Paleta oficial — Manual de marca Star Shine (60 · 30 · 10) */
+@theme {
+  --color-night: #0f1026;
+  --color-night-2: #161838;
+  --color-night-3: #1f2150;
+  --color-brand: #4429a6;
+  --color-lavender: #7f71d9;
+  --color-lilac: #b4a9db;
+  --color-ember: #f2421b;
+  --color-mauve: #59464b;
+
+  --font-sans: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+  --font-accent: var(--font-poppins), ui-sans-serif, system-ui, sans-serif;
+
+  --animate-marquee: marquee var(--marquee-duration, 40s) linear infinite;
+  --animate-twinkle: twinkle 3s ease-in-out infinite;
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+  @keyframes twinkle {
+    0%, 100% { opacity: 0.35; transform: scale(0.85) rotate(0deg); }
+    50% { opacity: 1; transform: scale(1.1) rotate(45deg); }
+  }
+}
+
+html {
+  background: var(--color-night);
+  color-scheme: dark;
+}
+
+body {
+  background: var(--color-night);
+  color: #fff;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: clip;
+}
+
+::selection {
+  background: var(--color-ember);
+  color: #fff;
+}
+
+/* Frases de acento ("donde la estrella, eres tú."): Poppins ExtraBold itálica.
+   Antes fue Yellowtail; se cambió por decisión de Camilo (ver CEREBRO §5). */
+.font-accent {
+  font-style: italic;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.01em;
+}
+
+/* Titulares estilo editorial deportivo */
+.display {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  line-height: 0.92;
+}
+
+.text-gradient {
+  background: linear-gradient(100deg, #fff 10%, var(--color-lilac) 45%, var(--color-ember) 95%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.07;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
